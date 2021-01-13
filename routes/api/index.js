@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const invRoutes = require("./inventory");
 
-// Book routes
+// Inv routes
 router.use("/inventory", invRoutes);
 
 module.exports = router;

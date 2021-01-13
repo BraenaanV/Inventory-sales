@@ -16,6 +16,11 @@ function NavTabs() {
                     Manage
                 </Link>
             </li>
+            <li className="nav-item">
+                <Link to="/StripeContainer" className={location.pathname === "/" ? "nav-link active" : "nav-link"}>
+                    Pay
+                </Link>
+            </li>
         </ul>
     )
 }
