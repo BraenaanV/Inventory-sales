@@ -1,20 +1,22 @@
 import React from "react";
-import Button from "react-bootstrap/Button";
+import { Grid, makeStyles, Button } from "@material-ui/core"
+
+const useStyles = makeStyles({ 
+    container: { backgroundColor: "blue" },
+    padding: { paddingTop: "50px"  }
+})
 
 function Header() {
+    const classes = useStyles()
     return (
-        <div className="jumbotron jumbotron-fluid">
-            <div className="container">
-                <div className="row">
-                    <div className="col-md-8">
-                        <h1>ICE CREAM!</h1>
-                    </div>
-                    <div className="col-md-4">
-                        <Button>Log-in</Button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <Grid container classes={{ container: classes.container }}>
+            <Grid item xs={8}>
+                <h1>ICE CREAM!</h1>
+            </Grid>
+            <Grid item xs={4}>
+                <Button variant="contained" color="primary" classes={{ padding: classes.padding}}>Log-in</Button>
+            </Grid>
+        </Grid>
     )
 }
 
