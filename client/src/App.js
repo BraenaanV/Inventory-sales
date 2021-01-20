@@ -13,7 +13,7 @@ function App() {
             <Header />
             <NavTabs />
             <Route exact path="/" component={Order} />
-            <Route exact path="/manage"  component={Manage} />
+            <Route path="/manage"  component={Manage} />
             <Route exact path="/stripeContainer" component={Stripe} />
             </div>
         </Router>
