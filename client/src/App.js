@@ -56,7 +56,7 @@ class App extends Component {
                 <Header />
                 <NavTabs />
                 <Route exact path="/" component={Order} />
-                {this.state.loggedIn && <Route exact path="/manage"  component={Manage} />}
+                {this.state.loggedIn && <Route path="/manage"  component={Manage} />}
                 <Route exact path="/stripeContainer" component={Stripe} />
                 <Route exact path="/login" render={(props)=> <Login {...props} updateUser={this.updateUser} />} />
                 <Route exact path="/sign-up" component={Signup} />

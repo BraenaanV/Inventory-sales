@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import API from '../utils/API'
 import { Grid, Card, CardContent, Typography, Button } from "@material-ui/core"
 import AddToCart from "../components/AddToCart";
+import Stripe from "../pages/StripeContainer";
+import CheckoutForm from "../components/CheckoutForm";
 
 function Order() {
     const [state, setState] = useState({
@@ -86,7 +88,13 @@ function Order() {
                     <Typography>Price: ${(state.cost).toFixed(2)}</Typography>
                     <Typography>Tax: ${state.tax}</Typography>
                     <Typography>Total Cost: ${state.totalPrice}</Typography>
-                </Grid></>}
+                </Grid>
+                <Grid item xs={12}>
+                    <Stripe
+                    amount={state.totalPrice * 100}
+                    ></Stripe>
+                </Grid>
+                </>}
             </Grid>
         </div>
     )
