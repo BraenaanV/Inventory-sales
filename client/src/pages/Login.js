@@ -40,9 +40,9 @@ handleChange=(event) => {
                 this.props.history.push("/")
                 console.log(this.props)
                 // update the state to redirect to home
-                // this.setState({
-                //     redirectTo: '/'
-                // })
+                this.setState({
+                    redirectTo: '/'
+                })
             }
         }).catch(error => {
             console.log('login error: ')
