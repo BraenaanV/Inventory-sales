@@ -2,7 +2,7 @@ const path = require("path");
 const router = require("express").Router();
 const apiRoutes = require("./api");
 const user = require("./user")
-const stripe = require("stripe")(process.env.STRIPE_SECRET_TEST);
+const stripe = require("stripe")("sk_test_51I6oUQDmnzdI6OONJCtkfoN5XBB31QMTHjGmOcWbexeLj3uFaLPAFW1nMLEWOlbhL7fArD9Pvgganuaus7hptqc600mFdeTsfO");
 const cors = require("cors");
 
 // API Routes
