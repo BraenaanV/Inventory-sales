@@ -2,7 +2,8 @@ import React from "react";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import axios from "axios";
 
-export const CheckoutForm = () => {
+function CheckoutForm(props) {
+  console.log(props.amount)
   const stripe = useStripe();
   const elements = useElements();
 
@@ -18,12 +19,14 @@ export const CheckoutForm = () => {
       try {
         const { id } = paymentMethod;
         const response = await axios.post(
-          "http://localhost:3001/stripe/charge",
+          "/stripe/charge",
           {
-            amount: 999,
+            amount: props.amount,
             id: id,
           }
         );
+        console.log(props.amount)
+        console.log(response)
 
         console.log("Stripe 35 | data", response.data.success);
         if (response.data.success) {
@@ -44,3 +47,5 @@ export const CheckoutForm = () => {
     </form>
   );
 };
+
+export default CheckoutForm;
