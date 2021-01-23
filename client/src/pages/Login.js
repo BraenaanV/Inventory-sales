@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 import axios from 'axios'
+import Button from '@material-ui/core/Button';
 
 class Login extends Component {
   constructor() {
@@ -90,11 +91,19 @@ handleChange=(event) => {
                 </div>
                 <div className="form-group ">
                     <div className="col-7"></div>
-                    <button
-                        className="btn btn-primary col-1 col-mr-auto"
-                       
+                    <Button
+                        className="btn btn-primary col-1 col-mr-auto"                       
                         onClick={this.handleSubmit}
-                        type="submit">Login</button>
+                        color="secondary"
+                        variant="contained"
+                        type="submit">
+                        Login
+                    </Button>
+                    <br />
+                    <Button>
+                    <Link to="/Sign-Up">
+                    Sign Up
+                    </Link></Button>
                 </div>
             </form>
         </div>

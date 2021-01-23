@@ -8,7 +8,7 @@ function AddToCart(props) {
                 variant="contained"
                 color="secondary"
                 onClick={() => props.addItem(props.item)}
-            >{props.item.price}</Button>
+            >${props.item.price}</Button>
         </div>
     )
 }
