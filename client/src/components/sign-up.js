@@ -34,6 +34,7 @@ class Signup extends Component {
 				console.log(response)
 				if (!response.data.errmsg) {
 					console.log('successful signup')
+					alert("Thank you for signing up!")
 					this.setState({ //redirect to login page
 						redirectTo: '/login'
 					})
@@ -42,6 +43,7 @@ class Signup extends Component {
 				}
 			}).catch(error => {
 				console.log('signup error: ')
+				alert("Signup error, try another username or password")
 				console.log(error)
 
 			})
