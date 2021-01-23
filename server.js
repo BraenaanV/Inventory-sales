@@ -7,7 +7,7 @@ const session = require("express-session")
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const passport = require("./passport");
-const dbConnection = require('./database') 
+const dbConnection = require('./Database') 
 const MongoStore = require('connect-mongo')(session)
 require("dotenv").config();
 const PORT = process.env.PORT || 3001;
