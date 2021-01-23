@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import API from '../utils/API'
-import { Grid, Card, CardContent, Typography, Button } from "@material-ui/core"
+import { Grid, Card, CardContent, Typography, Button, Box } from "@material-ui/core"
 import AddToCart from "../components/AddToCart";
 import Stripe from "../pages/StripeContainer";
 import CheckoutForm from "../components/CheckoutForm";
@@ -69,7 +69,7 @@ function Order() {
                 state.inventory.map((x, i) => <Grid key={i + '-item'} item xs={12} sm={6} md={4}>
                     <Card>
                         <CardContent>
-                            <Typography>{x.itemName}</Typography>
+                            <Typography><h2>{x.itemName}</h2></Typography>
                             <Typography>{x.description}</Typography>
                             <AddToCart
                                 addItem={addItem}
@@ -101,3 +101,19 @@ function Order() {
 }
 
 export default Order;
+// {!!state.tax && <>
+// <Grid item xs={12}>{
+//     Object.values(state.cart).map((x, i) => <div key={i + "-cart-item"}>
+//         {x.itemName} X {x.quantity} = {(x.price).toFixed(2) * x.quantity}
+//     </div>)
+// }
+//     <Typography>Price: ${(state.cost).toFixed(2)}</Typography>
+//     <Typography>Tax: ${state.tax}</Typography>
+//     <Typography>Total Cost: ${state.totalPrice}</Typography>
+// </Grid>
+// <Grid item xs={12}>
+//     <Stripe
+//     amount={state.totalPrice * 100}
+//     ></Stripe>
+// </Grid>
+// </>}

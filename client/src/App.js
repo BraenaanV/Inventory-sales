@@ -53,8 +53,10 @@ class App extends Component {
       return (
         <Router>
             <div>
-                <Header />
-                <NavTabs />
+                <Header 
+                isLoggedIn={this.state.loggedIn}
+                />
+
                 <Route exact path="/" component={Order} />
                 {this.state.loggedIn && <Route path="/manage"  component={Manage} />}
                 <Route exact path="/stripeContainer" component={Stripe} />
