@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import API from '../utils/API'
-import { Grid, Card, CardContent, Typography, Button, Box } from "@material-ui/core"
+import { Grid, Card, CardContent, Typography } from "@material-ui/core"
 import AddToCart from "../components/AddToCart";
 import Stripe from "../pages/StripeContainer";
-import CheckoutForm from "../components/CheckoutForm";
+
 
 function Order() {
     const [state, setState] = useState({
@@ -69,7 +69,7 @@ function Order() {
                 state.inventory.map((x, i) => <Grid key={i + '-item'} item xs={12} sm={6} md={4}>
                     <Card>
                         <CardContent>
-                            <Typography><h2>{x.itemName}</h2></Typography>
+                            <Typography>{x.itemName}</Typography>
                             <Typography>{x.description}</Typography>
                             <AddToCart
                                 addItem={addItem}

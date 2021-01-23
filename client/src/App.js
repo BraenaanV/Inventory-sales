@@ -4,7 +4,6 @@ import axios from 'axios'
 import Order from "./pages/Order";
 import Manage from "./pages/Manage";
 import Stripe from "./pages/StripeContainer"
-import NavTabs from "./components/NavTabs";
 import Header from "./components/Header";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";

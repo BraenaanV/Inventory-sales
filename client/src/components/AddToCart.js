@@ -1,4 +1,3 @@
-import react from "react";
 import { Button } from "@material-ui/core";
 
 function AddToCart(props) {

@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
+import Button from '@material-ui/core/Button';
 
 class Signup extends Component {
 	constructor() {
@@ -82,11 +84,11 @@ render() {
 				</div>
 				<div className="form-group ">
 					<div className="col-7"></div>
-					<button
+					<Button
 						className="btn btn-primary col-1 col-mr-auto"
 						onClick={this.handleSubmit}
 						type="submit"
-					>Sign up</button>
+					><Link to="/login">Sign Up</Link></Button>
 				</div>
 			</form>
 		</div>
