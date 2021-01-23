@@ -31,12 +31,14 @@ function CheckoutForm(props) {
         console.log("Stripe 35 | data", response.data.success);
         if (response.data.success) {
           console.log("CheckoutForm.js 25 | payment successful!");
+          alert("Your payment has been processed! Thank you for your business");
         }
       } catch (error) {
         console.log("CheckoutForm.js 28 | ", error);
       }
     } else {
       console.log(error.message);
+      alert("Payment failed, please try again")
     }
   };
 

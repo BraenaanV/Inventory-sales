@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
+import Button from '@material-ui/core/Button';
 
 class Signup extends Component {
 	constructor() {
@@ -32,6 +34,7 @@ class Signup extends Component {
 				console.log(response)
 				if (!response.data.errmsg) {
 					console.log('successful signup')
+					alert("Thank you for signing up!")
 					this.setState({ //redirect to login page
 						redirectTo: '/login'
 					})
@@ -40,6 +43,7 @@ class Signup extends Component {
 				}
 			}).catch(error => {
 				console.log('signup error: ')
+				alert("Signup error, try another username or password")
 				console.log(error)
 
 			})
@@ -82,11 +86,11 @@ render() {
 				</div>
 				<div className="form-group ">
 					<div className="col-7"></div>
-					<button
+					<Button
 						className="btn btn-primary col-1 col-mr-auto"
 						onClick={this.handleSubmit}
 						type="submit"
-					>Sign up</button>
+					><Link to="/login">Sign Up</Link></Button>
 				</div>
 			</form>
 		</div>

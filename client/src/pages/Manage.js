@@ -103,6 +103,10 @@ function Manage(props) {
             color="primary"
             variant="contained"
             >Add New Item</Button></Link>
+            <Link to="/"><Button
+            color="primary"
+            variant="contained"
+            >Order</Button></Link>
             <Route exact path={`${props.match.url}/create`}
             render={(props) => (
                 <CreateForm 

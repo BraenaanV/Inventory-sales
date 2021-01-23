@@ -3,11 +3,10 @@ const mongoose = require("mongoose");
 const routes = require("./routes");
 const app = express();
 const session = require("express-session")
-
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const passport = require("./passport");
-const dbConnection = require('./database') 
+const dbConnection = require('./Database') 
 const MongoStore = require('connect-mongo')(session)
 require("dotenv").config();
 const PORT = process.env.PORT || 3001;
@@ -36,7 +35,7 @@ if (process.env.NODE_ENV === "production") {
 app.use(routes);
 
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/applicationinventory");
+
 
 
 

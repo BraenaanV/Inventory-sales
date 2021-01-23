@@ -48,6 +48,7 @@ handleChange=(event) => {
         }).catch(error => {
             console.log('login error: ')
             console.log(error);
+            alert("Your login failed, please check credentials or create an account")
             
         })
 }
