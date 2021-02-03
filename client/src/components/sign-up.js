@@ -1,56 +1,54 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import Button from '@material-ui/core/Button';
+import Notification from './Notification';
 
-class Signup extends Component {
-	constructor() {
-		super()
-		this.state = {
-			username: '',
-			password: '',
-			confirmPassword: '',
 
-		}
-		this.handleSubmit = this.handleSubmit.bind(this)
-		this.handleChange = this.handleChange.bind(this)
-	}
-	handleChange(event) {
-		this.setState({
-			[event.target.name]: event.target.value
-		})
-	}
-	handleSubmit(event) {
+function Signup() {
+	const [username, setUsername] = useState("")
+	const [password, setPassword] = useState("")
+	const [notify, setNotify] = useState({ isOpen: false, message: '', type: '' })
+
+	const handleSubmit = (event) => {
 		console.log('sign-up handleSubmit, username: ')
-		console.log(this.state.username)
+		console.log(username)
 		event.preventDefault()
 
 		//request to server to add a new username/password
 		axios.post('/user/', {
-			username: this.state.username,
-			password: this.state.password
+			username: username,
+			password: password
 		})
 			.then(response => {
 				console.log(response)
 				if (!response.data.errmsg) {
-					console.log('successful signup')
-					alert("Thank you for signing up!")
-					this.setState({ //redirect to login page
-						redirectTo: '/login'
+					console.log('successful signup');
+					setNotify({
+						isOpen: true,
+						message: "Thank you for signing up!",
+						type: "success"
 					})
 				} else {
 					console.log('username already taken')
+					setNotify({
+						isOpen: true,
+						message: "Sorry, that username is already taken!",
+						type: "warning"
+					})
 				}
 			}).catch(error => {
 				console.log('signup error: ')
-				alert("Signup error, try another username or password")
+				setNotify({
+					isOpen: true,
+					message: "An error occurred, please try again",
+					type: "warning"
+				})
 				console.log(error)
 
 			})
 	}
 
-
-render() {
 	return (
 		<div className="SignupForm">
 			<h4>Sign up</h4>
@@ -65,8 +63,8 @@ render() {
 							id="username"
 							name="username"
 							placeholder="Username"
-							value={this.state.username}
-							onChange={this.handleChange}
+							value={username}
+							onChange={e => setUsername(e.target.value)}
 						/>
 					</div>
 				</div>
@@ -79,8 +77,8 @@ render() {
 							placeholder="password"
 							type="password"
 							name="password"
-							value={this.state.password}
-							onChange={this.handleChange}
+							value={password}
+							onChange={e => setPassword(e.target.value)}
 						/>
 					</div>
 				</div>
@@ -88,15 +86,18 @@ render() {
 					<div className="col-7"></div>
 					<Button
 						className="btn btn-primary col-1 col-mr-auto"
-						onClick={this.handleSubmit}
+						onClick={handleSubmit}
 						type="submit"
-					><Link to="/login">Sign Up</Link></Button>
+					>Sign Up!</Button>
+					<Button
+						className="btn btn-primary col-1 col-mr-auto"><Link to="/login">Login</Link></Button>
 				</div>
 			</form>
+			<Notification notify={notify} setNotify={setNotify}></Notification>
 		</div>
 
 	)
 }
-}
+
 
 export default Signup
