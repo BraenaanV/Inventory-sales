@@ -22,14 +22,14 @@ function Signup() {
 		})
 			.then(response => {
 				console.log(response)
-				if (!response.data.errmsg) {
+				if (!response.data.error) {
 					console.log('successful signup');
 					setNotify({
 						isOpen: true,
 						message: "Thank you for signing up!",
 						type: "success"
 					})
-				} else {
+				} else if(response.data.error) {
 					console.log('username already taken')
 					setNotify({
 						isOpen: true,
