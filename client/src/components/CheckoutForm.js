@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState } from 'react'
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import axios from "axios";
+import Notification from './Notification';
 
 function CheckoutForm(props) {
   console.log(props.amount)
   const stripe = useStripe();
   const elements = useElements();
+  const [notify, setNotify] = useState({ isOpen: false, message: '', type: '' })
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -31,22 +33,33 @@ function CheckoutForm(props) {
         console.log("Stripe 35 | data", response.data.success);
         if (response.data.success) {
           console.log("CheckoutForm.js 25 | payment successful!");
-          alert("Your payment has been processed! Thank you for your business");
+          setNotify({
+						isOpen: true,
+						message: "Your payment has been processed, thank you for your business!",
+						type: "success"
+					})
         }
       } catch (error) {
         console.log("CheckoutForm.js 28 | ", error);
       }
     } else {
       console.log(error.message);
-      alert("Payment failed, please try again")
+      setNotify({
+        isOpen: true,
+        message: "Something went wrong, please check your payment information and try again.",
+        type: "warning"
+      })
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} style={{ maxWidth: 400 }}>
-      <CardElement />
-      <button>Pay</button>
-    </form>
+    <div>
+      <form onSubmit={handleSubmit} style={{ maxWidth: 400 }}>
+        <CardElement />
+        <button>Pay</button>
+      </form>
+      <Notification notify={notify} setNotify={setNotify}></Notification>
+    </div>
   );
 };
 
