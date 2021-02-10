@@ -1,11 +1,25 @@
 import React, { useEffect, useState } from 'react'
 import API from '../utils/API'
 import { Grid, Card, CardContent, Typography } from "@material-ui/core"
+import CardMedia from '@material-ui/core/CardMedia';
 import AddToCart from "../components/AddToCart";
 import Stripe from "../pages/StripeContainer";
+import chocolate from "../assets/chocolate.jpg";
+import { makeStyles } from '@material-ui/core/styles';
 
+
+const useStyles = makeStyles({
+    root: {
+      maxWidth: 345,
+    },
+    media: {
+      height: 140,
+    },
+  });
 
 function Order() {
+    const classes = useStyles();
+
     const [state, setState] = useState({
         inventory: [],
         cart: {},
@@ -69,6 +83,9 @@ function Order() {
                 state.inventory.map((x, i) => <Grid key={i + '-item'} item xs={12} sm={6} md={4}>
                     <Card>
                         <CardContent>
+                            <CardMedia
+                            className={classes.media}
+                            image={x.image}/>
                             <Typography>{x.itemName}</Typography>
                             <Typography>{x.description}</Typography>
                             <AddToCart

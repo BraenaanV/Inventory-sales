@@ -1,5 +1,6 @@
 import React from "react";
 import { Button } from "@material-ui/core";
+import ImagePicker from "./ImagePicker";
 
 function EditForm (props) {
     return (
@@ -37,6 +38,18 @@ function EditForm (props) {
             value={props.price}
             onChange={props.handleChange}
             placeholder="Item price"
+            />
+            <h3>Image</h3>
+            <input
+            type="text"
+            name="image"
+            value={props.image}
+            onChange={props.handleChange}
+            placeholder="Item image"
+            />
+            <ImagePicker 
+            handleChange={props.handleImageChange}
+            selectedImage={props.image}
             />
             <br></br>
             <Button onClick={props.handleSubmit}
