@@ -27,14 +27,16 @@ function Manage(props) {
         itemName: "",
         description: "",
         inventoryNumber: "",
-        price: ""
+        price: "",
+        image: ""
     })
 
     const [newItem, setNewItem] = useState({
         itemName: "",
         description: "",
         inventoryNumber: "",
-        price: ""
+        price: "",
+        image: ""
     })
 
     const handleChange = e => {
@@ -47,6 +49,7 @@ function Manage(props) {
 
     const handleEditChange = e => {
         const { name, value } = e.target
+        console.log(name, value)
         setSelectedItem({
             ...selectedItem,
             [name]: value
@@ -60,21 +63,31 @@ function Manage(props) {
             itemName: "",
             description: "",
             inventoryNumber: "",
-            price: ""
+            price: "",
+            image: ""
         })
         getData()
         // setStatus(true)
     }
 
+    const handleImageChange = (url) => {
+        setSelectedItem({
+            ...selectedItem,
+            image: url
+        })
+    }
+
     const handleEditSubmit = async e => {
         e.preventDefault();
+        console.log(selectedItem)
         await API.update(selectedItem)
         setSelectedItem({
             _id: "",
             itemName: "",
             description: "",
             inventoryNumber: "",
-            price: ""
+            price: "",
+            image: ""
         })
         getData()
     }
@@ -114,6 +127,7 @@ function Manage(props) {
                 description={newItem.description}
                 inventoryNumber={newItem.inventoryNumber}
                 price={newItem.price}
+                image={newItem.image}
                 handleChange={handleChange}
                 handleSubmit={handleSubmit} />
                 )}
@@ -127,8 +141,10 @@ function Manage(props) {
                 description={selectedItem.description}
                 inventoryNumber={selectedItem.inventoryNumber}
                 price={selectedItem.price}
+                image={selectedItem.image}
                 handleChange={handleEditChange}
-                handleSubmit={handleEditSubmit} />
+                handleSubmit={handleEditSubmit}
+                handleImageChange={handleImageChange} />
             )}
             />
 

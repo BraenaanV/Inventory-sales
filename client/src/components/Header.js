@@ -4,7 +4,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
+import Box from "@material-ui/core/Box"
 import Button from '@material-ui/core/Button';
+import bannerImage from "../assets/bannerImage.jpg"
 // import IconButton from '@material-ui/core/IconButton';
 // import MenuIcon from '@material-ui/icons/Menu';
 
@@ -14,6 +16,10 @@ const useStyles = makeStyles(() => ({
   },
   title: {
     flexGrow: 1,
+  },
+  banner: {
+    height: "450px",
+    
   },
 }));
 
@@ -41,6 +47,9 @@ export default function Header(props) {
           <Button onClick={handleClick} color="inherit">Login</Button>}
         </Toolbar>
       </AppBar>
+      <Box display="flex" justifyContent="center">
+        <img className={classes.banner} src={bannerImage}></img>
+      </Box>
     </div>
   );
 }

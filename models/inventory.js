@@ -5,7 +5,8 @@ const inventorySchema = new Schema({
   itemName: { type: String, required: true },
   inventoryNumber: { type: String, required: true },
   description: String,
-  price: { type: Number, required: true }
+  price: { type: Number, required: true },
+  image: String
 });
 
 const Inventory = mongoose.model("Inventory", inventorySchema);

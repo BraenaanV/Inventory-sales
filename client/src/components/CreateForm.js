@@ -37,6 +37,14 @@ function CreateForm (props) {
             onChange={props.handleChange}
             placeholder="Item price"
             />
+            <h3>Image</h3>
+            <input
+            type="text"
+            name="image"
+            value={props.image}
+            onChange={props.handleChange}
+            placeholder="Item image"
+            />
             <br></br>
             <Button onClick={props.handleSubmit}
             type="submit"
