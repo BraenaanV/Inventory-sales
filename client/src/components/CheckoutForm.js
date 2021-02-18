@@ -2,15 +2,20 @@ import React, { useState } from 'react'
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import axios from "axios";
 import Notification from './Notification';
+import CircularProgress from "./CircularProgress";
 
 function CheckoutForm(props) {
   console.log(props.amount)
   const stripe = useStripe();
   const elements = useElements();
   const [notify, setNotify] = useState({ isOpen: false, message: '', type: '' })
+  const [load, setLoad] = useState({ isOpen: false})
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setLoad({
+      isOpen: true,
+    })
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
       card: elements.getElement(CardElement),
@@ -33,6 +38,9 @@ function CheckoutForm(props) {
         console.log("Stripe 35 | data", response.data.success);
         if (response.data.success) {
           console.log("CheckoutForm.js 25 | payment successful!");
+          setLoad({
+            isOpen: false,
+          })
           setNotify({
 						isOpen: true,
 						message: "Your payment has been processed, thank you for your business!",
@@ -59,6 +67,7 @@ function CheckoutForm(props) {
         <button>Pay</button>
       </form>
       <Notification notify={notify} setNotify={setNotify}></Notification>
+      <CircularProgress load={load} setLoad={setLoad}/>
     </div>
   );
 };
