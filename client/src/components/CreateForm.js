@@ -1,5 +1,6 @@
 import React from "react";
 import { Button } from "@material-ui/core";
+import ImagePicker from "./ImagePicker";
 
 function CreateForm (props) {
     return (
@@ -44,6 +45,10 @@ function CreateForm (props) {
             value={props.image}
             onChange={props.handleChange}
             placeholder="Item image"
+            />
+            <ImagePicker 
+            handleChange={props.handleImageChange}
+            selectedImage={props.image}
             />
             <br></br>
             <Button onClick={props.handleSubmit}

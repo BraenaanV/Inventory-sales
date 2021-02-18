@@ -76,6 +76,12 @@ function Manage(props) {
             image: url
         })
     }
+    const setNewImage = (url) => {
+        setNewItem({
+            ...newItem,
+            image: url
+        })
+    }
 
     const handleEditSubmit = async e => {
         e.preventDefault();
@@ -129,7 +135,8 @@ function Manage(props) {
                 price={newItem.price}
                 image={newItem.image}
                 handleChange={handleChange}
-                handleSubmit={handleSubmit} />
+                handleSubmit={handleSubmit} 
+                handleImageChange={setNewImage} />
                 )}
                 />
 
