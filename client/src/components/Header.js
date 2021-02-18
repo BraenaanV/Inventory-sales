@@ -7,8 +7,6 @@ import Typography from '@material-ui/core/Typography';
 import Box from "@material-ui/core/Box"
 import Button from '@material-ui/core/Button';
 import bannerImage from "../assets/bannerImage.jpg"
-// import IconButton from '@material-ui/core/IconButton';
-// import MenuIcon from '@material-ui/icons/Menu';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -48,7 +46,7 @@ export default function Header(props) {
         </Toolbar>
       </AppBar>
       <Box display="flex" justifyContent="center">
-        <img className={classes.banner} src={bannerImage}></img>
+        <img className={classes.banner} src={bannerImage} alt="Ice Cream"></img>
       </Box>
     </div>
   );

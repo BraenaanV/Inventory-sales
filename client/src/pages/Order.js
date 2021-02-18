@@ -4,8 +4,13 @@ import { Grid, Card, CardContent, Typography } from "@material-ui/core"
 import CardMedia from '@material-ui/core/CardMedia';
 import AddToCart from "../components/AddToCart";
 import Stripe from "../pages/StripeContainer";
-import chocolate from "../assets/chocolate.jpg";
+// import Cart from "../components/Cart"
 import { makeStyles } from '@material-ui/core/styles';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
 
 
 const useStyles = makeStyles({
@@ -14,6 +19,17 @@ const useStyles = makeStyles({
     },
     media: {
       height: 140,
+    },
+    tableHead: {
+        background: "#00bcd4",
+    },
+    summary: {
+        textAlign: "right",
+        paddingRight: 100,
+        paddingTop: 10,
+    },
+    lineItem: {
+        fontWeight: "bold",
     },
   });
 
@@ -67,7 +83,6 @@ function Order() {
 
     const calculateTotalCost = (cart) => {
         const items = Object.values(cart)
-        console.log(items)
         let cost = items.reduce((_cost, x) => _cost += x.price * x.quantity, 0)
 
         return {
@@ -80,7 +95,8 @@ function Order() {
     return (
         <div>
             <Grid container spacing={3}>{
-                state.inventory.map((x, i) => <Grid key={i + '-item'} item xs={12} sm={6} md={4}>
+                state.inventory.map((x, i) => 
+                <Grid key={i + '-item'} item xs={12} sm={6} md={4}>
                     <Card>
                         <CardContent>
                             <CardMedia
@@ -97,40 +113,101 @@ function Order() {
                 </Grid>)
             }
             {!!state.tax && <>
-                <Grid item xs={12}>{
-                    Object.values(state.cart).map((x, i) => <div key={i + "-cart-item"}>
-                        {x.itemName} X {x.quantity} = {(x.price).toFixed(2) * x.quantity}
-                    </div>)
-                }
-                    <Typography>Price: ${(state.cost).toFixed(2)}</Typography>
-                    <Typography>Tax: ${state.tax}</Typography>
-                    <Typography>Total Cost: ${state.totalPrice}</Typography>
-                </Grid>
-                <Grid item xs={12}>
-                    <Stripe
-                    amount={state.totalPrice * 100}
-                    ></Stripe>
-                </Grid>
-                </>}
+            <Grid item xs={12}>
+                <Card>
+                    <Table>
+                    <TableHead
+                    className={classes.tableHead}
+                    >
+                    <TableRow>
+                        <TableCell>ORDER SUMMARY</TableCell>
+                        <TableCell>Quantity</TableCell>
+                        <TableCell>Price</TableCell>
+                    </TableRow>
+                    </TableHead>
+                    <TableBody>
+                    {
+                        Object.values(state.cart).map((x, i) => <TableRow key={i + "-cart-item"}>
+                        <TableCell>{x.itemName}</TableCell>
+                        <TableCell>{x.quantity}</TableCell>
+                        <TableCell>{(x.price).toFixed(2) * x.quantity}</TableCell>
+                    </TableRow>)
+                    }
+                    </TableBody>
+                </Table>
+                <div className={classes.summary}>
+                <Typography className={classes.lineItem}>Price: ${(state.cost).toFixed(2)}</Typography>
+                <Typography className={classes.lineItem}>Tax: ${state.tax}</Typography>
+                <Typography className={classes.lineItem}>Total Cost: ${state.totalPrice}</Typography>
+                </div>
+                <br></br>
+                <hr></hr>
+                <Stripe
+                amount={state.totalPrice * 100}
+                ></Stripe>
+                </Card>
+            </Grid>
+
+
+            <Grid item xs={12}>
+                
+            </Grid>
+
+                </>
+            }
             </Grid>
         </div>
     )
 }
 
 export default Order;
-// {!!state.tax && <>
-// <Grid item xs={12}>{
-//     Object.values(state.cart).map((x, i) => <div key={i + "-cart-item"}>
-//         {x.itemName} X {x.quantity} = {(x.price).toFixed(2) * x.quantity}
-//     </div>)
+
+
+
+
+
+
+// {/* <Grid item xs={12} sm={6} md={4}>{
+//     Object.values(state.cart).map((x, i) => 
+//         <Cart 
+//         key={i + "-cart-item"}
+//         itemName={x.itemName}
+//         itemQuantity={x.quantity}
+//         unitPrice={(x.price).toFixed(2) * x.quantity}
+//         preTax={(state.cost).toFixed(2)}
+//         tax={state.tax}
+//         finalPrice={state.totalPrice}
+//         stripePrice={state.totalPrice * 100}
+//         />
+//         )
 // }
-//     <Typography>Price: ${(state.cost).toFixed(2)}</Typography>
-//     <Typography>Tax: ${state.tax}</Typography>
-//     <Typography>Total Cost: ${state.totalPrice}</Typography>
-// </Grid>
+//  </Grid> */}
+
+
+
+
+
 // <Grid item xs={12}>
-//     <Stripe
-//     amount={state.totalPrice * 100}
-//     ></Stripe>
+// <Card>
+//     <Table>
+//     <TableHead>
+//     <TableRow>
+//         <TableCell>Item</TableCell>
+//         <TableCell>Quantity</TableCell>
+//         <TableCell>Price</TableCell>
+//     </TableRow>
+//     </TableHead>
+
+
+// {
+//     Object.values(state.cart).map((x, i) => <div key={i + "-cart-item"}>
+//     {x.itemName} X {x.quantity} = {(x.price).toFixed(2) * x.quantity}
+// </div>)
+// }
+// <Typography>Price: ${(state.cost).toFixed(2)}</Typography>
+// <Typography>Tax: ${state.tax}</Typography>
+// <Typography>Total Cost: ${state.totalPrice}</Typography>
+
+// </Table>
+// </Card>
 // </Grid>
-// </>}
